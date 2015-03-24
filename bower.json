@@ -1,0 +1,19 @@
+{
+  "name": "simcon-authorization",
+  "version": "0.0.0",
+  "authors": [
+    "Gregorio Moya <gmoyatorres@gmail.com>"
+  ],
+  "main": "module.js",
+  "keywords": [
+    "None"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
