@@ -1,0 +1,29 @@
+{
+  "name": "simcon-authorization",
+  "authors": [
+    "Gregorio Moya <gmoyatorres@gmail.com>"
+  ],
+  "main": "module.js",
+  "keywords": [
+    "None"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "homepage": "https://github.com/tavomoya/angular-simcon",
+  "_release": "ead947a758",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "ead947a7588d2b3c841bf7e89e2a72b64434674e"
+  },
+  "_source": "git://github.com/tavomoya/angular-simcon.git",
+  "_target": "*",
+  "_originalSource": "simcon-authorization",
+  "_direct": true
+}

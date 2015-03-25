@@ -2,7 +2,7 @@
 
 var app = angular.module('simcon.authorization');
 
-app.factory('Authorization', function ($http, $rootScope, Base, $q, Official) {
+app.factory('Authorization', function ($http, $rootScope, Base, $q) {
 
 	
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -73,11 +73,11 @@ app.factory('Authorization', function ($http, $rootScope, Base, $q, Official) {
 		var deferred = $q.defer();
 
 		$http.post(this.baseApiPath + '/login', {
-			username: user.email, 
-			pass: user.password
+			username: user.username, 
+			password: user.password
 		}).then(function (obj) {
 			console.log('el obj', obj);
-			obj.data.user = new Official(obj.data.user);
+			// obj.data.user = new Official(obj.data.user);
 			deferred.resolve(obj.data);
 		}, function (err) {
 			deferred.reject({
@@ -92,7 +92,7 @@ app.factory('Authorization', function ($http, $rootScope, Base, $q, Official) {
 	Authorization.prototype.changePassword = function (userId, newPassword) {
 		var deferred = $q.defer();
 
-		$http.post(this.baseApiPath + '/changePassword', {obj: {
+		$http.post(this.baseApiPath + '/changePassword', {user: {
 			id: userId,
 			newPassword: newPassword }
 		}).then(function (obj) {
@@ -138,7 +138,7 @@ app.factory('Authorization', function ($http, $rootScope, Base, $q, Official) {
 	Authorization.prototype.forgetPassword = function(email) {
 		var deferred = $q.defer();
 
-		$http.post(this.baseApiPath + '/forgetPassword', {obj: email})
+		$http.post(this.baseApiPath + '/forgetPassword', {email: email})
 			.then(function (obj) {
 				deferred.resolve(obj);
 			}, function (err) {
@@ -154,8 +154,28 @@ app.factory('Authorization', function ($http, $rootScope, Base, $q, Official) {
 	Authorization.prototype.search = function(id) {
 		var deferred = $q.defer();
 
-		$http.post('/api/auth/search/'+id).success(function (data, status) {
+		$http.get('/api/auth/search/'+id).then(function (data) {
 			deferred.resolve(data);
+		}, function (err) {
+			deferred.reject({
+				error: err,
+				message: 'Ocurrio un error en la busqueda'
+			});
+		});
+
+		return deferred.promise;
+	};
+
+	Authorization.prototype.searchByToken = function(token) {
+		var deferred = $q.defer();
+
+		$http.get(this.baseApiPath +'/searchByToken/'+token).then(function (data) {
+			deferred.resolve(data);
+		}, function (err) {
+			deferred.reject({
+				error: err,
+				message: 'Ocurrio un error en la busqueda'
+			});
 		});
 
 		return deferred.promise;

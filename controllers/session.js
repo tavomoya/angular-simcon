@@ -29,6 +29,10 @@ app.controller('SessionCtrl', function ($scope, $rootScope, $timeout, $location,
 
 	$rootScope.$on("$routeChangeStart", function () {
 
+		if (!$window.sessionStorage.isAuthenticated && ($location.path() != '/register' && $location.path().substr(0, 15) != "/changepassword" && $location.path().substr(0, 14) != "/confirm/email")) {
+			$location.path('/login');
+		}
+
 	});
 		
 });

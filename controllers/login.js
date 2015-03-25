@@ -10,7 +10,7 @@ app.controller('LoginCtrl', function ($scope, $rootScope, $http, $location, $win
 	$rootScope.isAuthenticated = $rootScope.isAuthenticated || false;
 	$scope.wellcome = '';
 	$scope.message = '';
-
+	console.log('Hola :)')
 	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/************* Objetos *************/
 
@@ -26,15 +26,15 @@ app.controller('LoginCtrl', function ($scope, $rootScope, $http, $location, $win
 		
 		$scope.user.password = md5.createHash($scope.password);
 		$scope.user.username = $scope.email.toLowerCase();
-
+		console.log('Yei :3 ', $scope.user);
 		authorization.login($scope.user).then(function (obj) {
 			
 			$scope.user.username = angular.copy($scope.email);
 			$scope.user.password = angular.copy($scope.password);
 			console.log(obj)
-			$rootScope.userData = obj.data.user;
+			$rootScope.userData = obj.user;
 			$window.sessionStorage.user = JSON.stringify($rootScope.userData);
-			$window.sessionStorage.token = obj.data.token;
+			$window.sessionStorage.token = obj.token;
 			$window.sessionStorage.isAuthenticated = true;
 			$rootScope.isAuthenticated = true;
 			$location.path('/');
@@ -52,7 +52,7 @@ app.controller('LoginCtrl', function ($scope, $rootScope, $http, $location, $win
 
 	$scope.forgetPassword = function () {
 
-		var dialog = dialogs.create('partials/forgetPassword.html', 'ForgetPassCtrl');
+		var dialog = dialogs.create('bower_components/simcon-authorization/partials/forgetPassword.html', 'ForgetPassCtrl');
 		dialog.result.then(function (obj) {
 			console.log('Cambie la password ->');
 		}, function (err) {

@@ -1,4 +1,3 @@
 
-angular.module('simcon', [
-		'simcon.authorization'
+angular.module('simcon.authorization', [
 	]);
