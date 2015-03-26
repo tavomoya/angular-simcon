@@ -1,6 +1,6 @@
 {
   "name": "simcon-authorization",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "authors": [
     "Gregorio Moya <gmoyatorres@gmail.com>"
   ],
@@ -15,5 +15,6 @@
     "bower_components",
     "test",
     "tests"
-  ]
+  ],
+  "homepage": "https://github.com/tavomoya/angular-simcon"
 }
